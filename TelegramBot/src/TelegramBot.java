@@ -5,6 +5,7 @@
 //
 //===============================================
 
+import java.io.File;
 import java.lang.Character.UnicodeBlock;
 import java.lang.Character.UnicodeScript;
 import java.lang.reflect.Executable;
@@ -12,41 +13,23 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.config.RequestConfig;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.telegram.telegrambots.ApiContextInitializer;
-import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.ApiContext;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
-import org.telegram.telegrambots.meta.api.methods.send.SendAudio;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.File;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
-import com.google.common.base.Objects;
-import com.google.inject.spi.Message;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
 	public enum Weather {
-		SUN("☀"), CLOUDS("☁"), RAIN("☂"), STORM("☂☂"), LIGHT("🌩"), SNOW("🌨");
+		SUN("?"), CLOUDS("?"), RAIN("?"), STORM("??"), LIGHT("??"), SNOW("??");
 		String picture;
 		private Weather(String picture) {
 			this.picture = picture;
@@ -107,7 +90,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 			GetFile getFileMethod = new GetFile();
 			getFileMethod.setFileId(photo.getFileId());
 			try {
-				File file = execute(getFileMethod);
+				org.telegram.telegrambots.meta.api.objects.File file = execute(getFileMethod);
 				return file.getFilePath();
 			} catch (TelegramApiException e) {
 				e.printStackTrace();
@@ -214,7 +197,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 	}
 
 }
-
 
 
 
