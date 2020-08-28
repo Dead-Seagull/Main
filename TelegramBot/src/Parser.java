@@ -1,18 +1,12 @@
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class Parser {
@@ -52,8 +46,7 @@ public class Parser {
 	public static String generateDate() {
 		Date date = new Date();
 		SimpleDateFormat format = new SimpleDateFormat("d");
-		String dateFinal = format.format(date);
-		return dateFinal;
+		return format.format(date);
 	}
 	
 }

@@ -5,10 +5,6 @@
 //
 //===============================================
 
-import java.io.File;
-import java.lang.Character.UnicodeBlock;
-import java.lang.Character.UnicodeScript;
-import java.lang.reflect.Executable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -44,6 +40,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 				break;
 			case "time": send(message, "You printed hey!");
 				break;
+			default:
+				send(message, "There is no such command!");
 			}
 		}
 		
